@@ -50,6 +50,8 @@ fn main() {
         println!(" ");
     }
 
+    let mut tmp: Vec<char> = vec![];
+
     for line in reader.lines() {
         let line = line.unwrap();
         let parts: Vec<&str> = line.split(' ').collect();
@@ -58,9 +60,18 @@ fn main() {
             parts[3].parse::<usize>().unwrap(),
             parts[5].parse::<usize>().unwrap(),
         );
+        // task 1
+        // for _ in 0..its {
+        //     let to_move = stacks[from - 1].pop().unwrap();
+        //     stacks[to - 1].push(to_move);
+        // }
+
+        // task 2
         for _ in 0..its {
-            let to_move = stacks[from - 1].pop().unwrap();
-            stacks[to - 1].push(to_move);
+            tmp.push(stacks[from - 1].pop().unwrap());
+        }
+        while let Some(item) = tmp.pop() {
+            stacks[to - 1].push(item);
         }
     }
 
